@@ -17,6 +17,7 @@ class MyTheme {
   static const Color grayTransparent = Color.fromARGB(17, 155, 155, 155);
   static const Color grey = Color.fromARGB(255, 152, 157, 163);
   static const Color yellow = Color.fromARGB(255, 255, 199, 0);
+  static const Color whiteGrey = Color.fromARGB(255, 233, 234, 235);
   //! Fonts
   static const String robotFont = 'Robot';
   static TextStyle splashTitle(Color color, double fontSize) => TextStyle(
