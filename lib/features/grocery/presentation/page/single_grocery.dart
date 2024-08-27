@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_assessment/cores/constants/constants.dart';
 import 'package:mobile_assessment/cores/theme/my_theme.dart';
 import 'package:mobile_assessment/features/grocery/presentation/widgets/additional_option.dart';
 import 'package:mobile_assessment/features/grocery/presentation/widgets/detail_image.dart';
@@ -15,8 +16,7 @@ class SingleGrocery extends StatelessWidget {
       body: Column(
         children: [
           DetailImage(
-            imageUrl:
-                'https://www.foodandwine.com/thmb/jldKZBYIoXJWXodRE9ut87K8Mag=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg',
+            imageUrl: AppConstant.imageUrl,
           ),
           DetailInfo(
             name: 'Chicken Burger',
