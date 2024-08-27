@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_assessment/cores/constants/constants.dart';
 import 'package:mobile_assessment/cores/theme/my_theme.dart';
 import 'package:mobile_assessment/features/grocery/presentation/bloc/grocery_bloc.dart';
+import 'package:mobile_assessment/features/grocery/presentation/bloc/grocery_event.dart';
 import 'package:mobile_assessment/features/grocery/presentation/bloc/grocery_state.dart';
+import 'package:mobile_assessment/features/grocery/presentation/page/single_grocery.dart';
 import 'package:mobile_assessment/features/grocery/presentation/widgets/grocery_card.dart';
 import 'package:mobile_assessment/features/grocery/presentation/widgets/search_input.dart';
 
@@ -14,6 +16,7 @@ class ListGrocery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<GroceryBloc>(context).add(GetAllGroceryEvent());
     return Scaffold(
       backgroundColor: MyTheme.white,
       appBar: AppBar(
@@ -62,12 +65,20 @@ class ListGrocery extends StatelessWidget {
                         ),
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return GroceryCard(
-                            imageUrl: AppConstant.imageUrl,
-                            name: state.data[index].title,
-                            price: state.data[index].price,
-                            discount: state.data[index].discount,
-                            rating: state.data[index].rating,
+                          return GestureDetector(
+                            onTap: () {
+                              BlocProvider.of<GroceryBloc>(context).add(
+                                  GetGroceryEvent(id: state.data[index].id));
+                              Navigator.pushNamed(
+                                  context, SingleGrocery.routes);
+                            },
+                            child: GroceryCard(
+                              imageUrl: AppConstant.imageUrl,
+                              name: state.data[index].title,
+                              price: state.data[index].price,
+                              discount: state.data[index].discount,
+                              rating: state.data[index].rating,
+                            ),
                           );
                         },
                       ),

@@ -1,4 +1,6 @@
+import 'dart:collection';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:mobile_assessment/cores/constants/constants.dart';
 import 'package:mobile_assessment/cores/exception/exceptions.dart';
@@ -25,6 +27,7 @@ class GroceryRemoteDataSourceImpl extends GroceryRemoteDataSource {
 
       if (result.statusCode == 200) {
         final jsonFormat = json.decode(result.body);
+
         List<GroceryModel> answer = [];
         for (var model in jsonFormat['data']) {
           answer.add(GroceryModel.fromJson(model));
@@ -45,7 +48,7 @@ class GroceryRemoteDataSourceImpl extends GroceryRemoteDataSource {
     try {
       final result = await client
           .get(
-            Uri.parse('${AppConstant.baseUrl}/id'),
+            Uri.parse('${AppConstant.baseUrl}/$id'),
           )
           .timeout(const Duration(seconds: 15));
 

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_assessment/features/grocery/domain/usecase/get_all_grocery_usecase.dart';
 import 'package:mobile_assessment/features/grocery/domain/usecase/get_grocery_usecase.dart';
@@ -15,7 +14,7 @@ class GroceryBloc extends Bloc<GroceryEvent, GroceryState> {
       emit(GroceryLoadingState());
 
       final result = await getAllGroceryUsecase.execute();
-      debugPrint('here');
+
       result.fold((failure) {
         emit(GroceryErrorState(message: failure.message));
       }, (data) {
