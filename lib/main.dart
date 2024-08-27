@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_assessment/features/grocery/presentation/page/list_grocery.dart';
 import 'package:mobile_assessment/features/grocery/presentation/page/single_grocery.dart';
 import 'package:mobile_assessment/features/splash_screen.dart';
 
@@ -16,8 +17,9 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashScreen.routes: (context) => const SplashScreen(),
         SingleGrocery.routes: (context) => const SingleGrocery(),
+        ListGrocery.routes: (context) => ListGrocery()
       },
-      initialRoute: SingleGrocery.routes,
+      initialRoute: ListGrocery.routes,
     );
   }
 }
