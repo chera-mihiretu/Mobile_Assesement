@@ -16,10 +16,10 @@ class GroceryModel extends GroceryEntity {
   final double rating;
   @override
   // ignore: overridden_fields
-  final int price;
+  final double price;
   @override
   // ignore: overridden_fields
-  final int discount;
+  final double discount;
   @override
   // ignore: overridden_fields
   final String description;
@@ -57,8 +57,8 @@ class GroceryModel extends GroceryEntity {
       title: json['title'],
       imageUrl: json['imageUrl'],
       rating: json['rating'].toDouble(),
-      price: json['price'],
-      discount: json['discount'],
+      price: json['price'].toDouble(),
+      discount: json['discount'].toDouble(),
       description: json['description'],
       options: optionList,
     );

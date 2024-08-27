@@ -21,6 +21,7 @@ class SearchInput extends StatelessWidget {
         controller: control,
         onChanged: onChange,
         decoration: InputDecoration(
+            prefixIcon: const Icon(Icons.search),
             suffixIcon: IconButton(
                 onPressed: search,
                 icon: const Icon(

@@ -4,8 +4,8 @@ import 'package:mobile_assessment/cores/theme/my_theme.dart';
 class GroceryCard extends StatelessWidget {
   final String imageUrl;
   final String name;
-  final int price;
-  final int discount;
+  final double price;
+  final double discount;
   final double rating;
   const GroceryCard(
       {super.key,

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_assessment/cores/constants/constants.dart';
 import 'package:mobile_assessment/cores/theme/my_theme.dart';
+import 'package:mobile_assessment/features/grocery/presentation/bloc/grocery_bloc.dart';
+import 'package:mobile_assessment/features/grocery/presentation/bloc/grocery_state.dart';
 import 'package:mobile_assessment/features/grocery/presentation/widgets/grocery_card.dart';
 import 'package:mobile_assessment/features/grocery/presentation/widgets/search_input.dart';
 
@@ -36,26 +39,51 @@ class ListGrocery extends StatelessWidget {
       body: Column(
         children: [
           SearchInput(
-            hint: '',
+            hint: 'Search',
             control: searchControl,
             search: () {},
             onChange: (val) {},
           ),
-          Expanded(
-            child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                ),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return const GroceryCard(
-                    imageUrl: AppConstant.imageUrl,
-                    name: 'Burger',
-                    price: 10,
-                    discount: 2,
-                    rating: 5.0,
-                  );
-                }),
+          BlocBuilder<GroceryBloc, GroceryState>(
+            builder: (context, state) {
+              return BlocBuilder<GroceryBloc, GroceryState>(
+                builder: (context, state) {
+                  if (state is GroceryLoadingState) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is AllGroceryLoadedState) {
+                    return Expanded(
+                      child: GridView.builder(
+                        itemCount: state.data.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                        ),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return GroceryCard(
+                            imageUrl: AppConstant.imageUrl,
+                            name: state.data[index].title,
+                            price: state.data[index].price,
+                            discount: state.data[index].discount,
+                            rating: state.data[index].rating,
+                          );
+                        },
+                      ),
+                    );
+                  } else if (state is GroceryErrorState) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  } else {
+                    return Container(
+                      color: Colors.red,
+                    );
+                  }
+                },
+              );
+            },
           )
         ],
       ),
