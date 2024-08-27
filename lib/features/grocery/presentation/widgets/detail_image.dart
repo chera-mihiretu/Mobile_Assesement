@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_assessment/cores/theme/my_theme.dart';
+import 'package:mobile_assessment/features/grocery/presentation/bloc/grocery_bloc.dart';
+import 'package:mobile_assessment/features/grocery/presentation/bloc/grocery_event.dart';
 
 class DetailImage extends StatelessWidget {
   final String imageUrl;
@@ -51,6 +54,20 @@ class DetailImage extends StatelessWidget {
               color: MyTheme.grayTransparent,
               height: double.infinity,
               width: double.infinity,
+            ),
+          ),
+          Positioned(
+            top: 10,
+            left: 10,
+            child: IconButton(
+              onPressed: () {
+                BlocProvider.of<GroceryBloc>(context).add(GetAllGroceryEvent());
+                Navigator.pop(context);
+              },
+              style: IconButton.styleFrom(
+                backgroundColor: MyTheme.whiteGrey,
+              ),
+              icon: const Icon(Icons.arrow_back),
             ),
           ),
         ],

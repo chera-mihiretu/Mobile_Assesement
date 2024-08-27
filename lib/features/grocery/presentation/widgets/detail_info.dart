@@ -3,9 +3,9 @@ import 'package:mobile_assessment/cores/theme/my_theme.dart';
 
 class DetailInfo extends StatelessWidget {
   final String name;
-  final int price;
+  final double price;
   final double rating;
-  final int discount;
+  final double discount;
   final String desc;
   const DetailInfo(
       {super.key,

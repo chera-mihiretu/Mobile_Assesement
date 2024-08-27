@@ -7,16 +7,9 @@ class AdditionalOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: MyTheme.paddingAll(22),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            'Additional Option',
-            style: MyTheme.titleFont(MyTheme.black, MyTheme.normalSmalTitle20),
-          ),
-        ],
+    return Expanded(
+      child: ListView.builder(
+        itemBuilder: (_, index) {},
       ),
     );
   }
